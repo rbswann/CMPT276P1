@@ -1,8 +1,12 @@
-package com.group04.studentaide;
+package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,19 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    /*App opening
-
-    1. Login page functionality
-
-    2. User enters username and password
-        - verify User and Pass, allow 3-5 tries
-
-    3. Click log-in -- if log-in is true, take to homepage
-
-    4. Click sign-up will take to a new activity
-        - Enter email, ,first name, last name username, password
-        - Option of student or educator
-
-
-     */
+    public void loginScreen(View view){
+        Intent login = new Intent(this, loginActivity.class);
+        startActivity(login);
+    }
 }
