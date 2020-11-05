@@ -20,4 +20,14 @@ public class MainActivity extends AppCompatActivity {
         Intent login = new Intent(this, loginActivity.class);
         startActivity(login);
     }
+
+    public void calendarScreen(View view){
+        Intent calendar = new Intent(this, calendarActivity.class);
+        startActivity(calendar);
+    }
+
+    public void coursesScreen(View view){
+        Intent courses = new Intent(this, coursesActivity.class);
+        startActivity(courses);
+    }
 }

@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class loginActivity extends AppCompatActivity {
+public class coursesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_courses);
     }
 
-    public void register(View view){
-        Intent register = new Intent(this, registration.class);
-        startActivity(register);
+    public void courseCreate(View view){
+        Intent create = new Intent(this, courseCreation.class);
+        startActivity(create);
     }
 }
