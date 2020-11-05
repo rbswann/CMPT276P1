@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-  
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/applogo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".loadingscreen"
+        <activity android:name=".courseCreation"></activity>
+        <activity
+            android:name=".coursesActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".calendarActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".registration"
+            android:parentActivityName=".loginActivity" />
+        <activity
+            android:name=".loadingscreen"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,8 +31,6 @@
         <activity
             android:name=".loginActivity"
             android:parentActivityName=".MainActivity">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -36,4 +43,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
