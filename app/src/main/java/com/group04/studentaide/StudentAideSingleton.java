@@ -15,13 +15,20 @@ import com.android.volley.toolbox.Volley;
 
 public class StudentAideSingleton {
 
-    private static StudentAideSingleton instance;
+    private static StudentAideSingleton mInstance;
     private RequestQueue mRequestQueue;
     private static Context mContext;
 
     private StudentAideSingleton(Context context){
         mContext = context;
         mRequestQueue = getRequestQueue();
+    }
+
+    public static synchronized StudentAideSingleton getInstance(Context context){
+        if (mInstance == null){
+            mInstance = new StudentAideSingleton(context);
+        }
+        return mInstance;
     }
 
     public RequestQueue getRequestQueue() {
