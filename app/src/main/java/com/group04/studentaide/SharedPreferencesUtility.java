@@ -73,13 +73,13 @@ public class SharedPreferencesUtility {
     }
 
     public void logout(){
-        SharedPreferences sharedPreferences = mContext.getSharedPreferences((KEY_preferenceName, Context.MODE_PRIVATE));
+        SharedPreferences sharedPreferences = mContext.getSharedPreferences(KEY_preferenceName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //Clear all saved details from our application context
         editor.clear();
         editor.apply();
-        mContext.startActivity(new Intent(mContext, LoginActivity.class))
+        mContext.startActivity(new Intent(mContext, loginActivity.class));
     }
 
 }
