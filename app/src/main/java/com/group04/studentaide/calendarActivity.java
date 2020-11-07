@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.group04.studentaide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
