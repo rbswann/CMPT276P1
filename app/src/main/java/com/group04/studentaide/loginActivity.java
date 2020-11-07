@@ -65,6 +65,17 @@ public class loginActivity extends AppCompatActivity {
     private void logIn(){
         final String userName = inputUserName.getText().toString().trim();
         final String password = inputPassword.getText().toString().trim();
+        
+        //Ensure users fill in respective fields and prevents from sending POST request if empty
+        if (TextUtils.isEmpty(userName)){
+            inputUserName.setError("Please enter your email");
+            inputUserName.requestFocus();
+        }
+
+        if (TextUtils.isEmpty(password)){
+            inputPassword.setError("Please enter your email");
+            inputPassword.requestFocus();
+        }
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                 new Response.Listener<String>() {
