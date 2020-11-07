@@ -89,10 +89,10 @@ public class RegistrationActivity extends AppCompatActivity {
     private void registerUser(){
 
 
-        String firstName = inputFirstName.getText().toString();
-        String lastName = inputLastName.getText().toString();
-        String email = inputEmail.getText().toString();
-        String password = inputPassword.getText().toString();
+        String firstName = inputFirstName.getText().toString().trim();
+        String lastName = inputLastName.getText().toString().trim();
+        String email = inputEmail.getText().toString().trim();
+        String password = inputPassword.getText().toString().trim();
 
         //onclick listener for boolean to check whether user selects student or educator
         //Boolean educator;
@@ -127,12 +127,12 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         //TODO: populate Jsonobject with user information
-                    //What goes in the resposne? Toast that user registered?
+                    //What goes in the response? Toast that user registered?
                         Toast.makeText(getApplicationContext(), "Registration Successful.", Toast.LENGTH_SHORT).show();
 
                         //Populate JSON and POST to server
                         try{
-
+                            //This might not be necessary as I have used getParams to store keypair
                             JSONObject userJson = new JSONObject();
                             userJson.put("firstname", firstName);
                             userJson.put("lastname", lastName);
