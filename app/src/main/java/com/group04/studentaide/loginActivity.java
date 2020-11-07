@@ -5,7 +5,6 @@
 * User login will check information entered serverside and use StringRequest response to determine whether or not credentials are known in database
 * On successful login, new Intent will be created taking users to MainActivity
 *
-* TODO: check server response is success to notify that user login is successful, otherwise allow user to try again
 *
 * */
 
@@ -18,9 +17,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.group04.studentaide.RegistrationActivity;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.group04.studentaide.serverURL.LOGIN_URL;
 
 public class loginActivity extends AppCompatActivity {
 
@@ -56,7 +66,38 @@ public class loginActivity extends AppCompatActivity {
 
     //Log in button clicked
     private void logIn(){
-        final String userName = inputUserName.getText().toString();
-        final String passWord = inputPassword.getText().toString();
+        final String userName = inputUserName.getText().toString().trim();
+        final String password = inputPassword.getText().toString().trim();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        if(response.equals("success")){
+                            //Open main activity
+                            Intent homePage = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(homePage);
+                        }else{
+                            //Display login failure
+                            Toast.makeText(loginActivity.this, response, Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", userName);
+                params.put("password", password);
+
+                return params;
+            }
+        };
     }
 }
