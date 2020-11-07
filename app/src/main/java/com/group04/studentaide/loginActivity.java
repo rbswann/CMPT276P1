@@ -99,5 +99,6 @@ public class loginActivity extends AppCompatActivity {
                 return params;
             }
         };
+        StudentAideSingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
