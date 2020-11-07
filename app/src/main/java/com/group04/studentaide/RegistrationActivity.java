@@ -121,26 +121,12 @@ public class RegistrationActivity extends AppCompatActivity {
         //TODO: OPEN LOGIN PAGE AFTER SUCCESSFUL REGISTRATION
 
         //POST method here to upload user information to server/database
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST, REGISTER_URL, null,
-                new Response.Listener<JSONObject>(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
+                new Response.Listener<String>(){
                     @Override
-                    public void onResponse(JSONObject response) {
-                        //TODO: populate Jsonobject with user information
-                    //What goes in the response? Toast that user registered?
-                        Toast.makeText(getApplicationContext(), "Registration Successful.", Toast.LENGTH_SHORT).show();
+                    public void onResponse(String response) {
 
-                        //Populate JSON and POST to server
-                        try{
-                            //This might not be necessary as I have used getParams to store keypair
-                            JSONObject userJson = new JSONObject();
-                            userJson.put("firstname", firstName);
-                            userJson.put("lastname", lastName);
-                            userJson.put("username", email);
-                            userJson.put("password", password);
-
-                        }catch(JSONException e){
-                            e.printStackTrace();
-                        }
+                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -174,6 +160,6 @@ public class RegistrationActivity extends AppCompatActivity {
         };
 
         //Singleton class used here to create new RequestQueue and send off our JsonObject
-        StudentAideSingleton.getInstance(this).addToRequestQueue(jsonObjReq);
+        StudentAideSingleton.getInstance(this).addToRequestQueue(stringRequest);
         }
 }
