@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,6 +35,8 @@ public class courseCreation extends AppCompatActivity {
 
     Button courseCreation;
     EditText inputCourseName;
+    EditText institutionInput;
+    Switch allowQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,8 @@ public class courseCreation extends AppCompatActivity {
     private void createCourse(){
 
         String courseName = inputCourseName.getText().toString().trim();
+        String institution = institutionInput.getText().toString().trim();
+        boolean quizAllow = allowQuiz.isChecked();
         String courseID = Integer.toString(generateCourseID());
         //Generate courseID when create course clicked
 
@@ -72,7 +77,7 @@ public class courseCreation extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         error.printStackTrace();
                     }
-             }){
+                }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();

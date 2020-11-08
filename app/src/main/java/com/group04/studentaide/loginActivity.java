@@ -1,12 +1,12 @@
 /*
-*Written by: Yufeng Luo
-* UNTESTED
-*
-* User login will check information entered serverside and use StringRequest response to determine whether or not credentials are known in database
-* On successful login, new Intent will be created taking users to MainActivity
-*
-*
-* */
+ *Written by: Yufeng Luo
+ * UNTESTED
+ *
+ * User login will check information entered serverside and use StringRequest response to determine whether or not credentials are known in database
+ * On successful login, new Intent will be created taking users to MainActivity
+ *
+ *
+ * */
 
 package com.group04.studentaide;
 
@@ -44,7 +44,7 @@ public class loginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        logInButton = (Button) findViewById(R.id.register);
+        logInButton = (Button) findViewById(R.id.login);
         inputUserName = (EditText) findViewById(R.id.username);
         inputPassword = (EditText) findViewById(R.id.password);
 
@@ -121,12 +121,9 @@ public class loginActivity extends AppCompatActivity {
         JsonObjectRequest userObj = new JsonObjectRequest(Request.Method.GET, LOGIN_URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
             }
         })
     }
-
     */
 
 }
-
