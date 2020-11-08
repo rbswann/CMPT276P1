@@ -16,11 +16,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Locale;
 
 /*
--- Option to choose course if student wants to study for certain course, otherwise adds to general study time
-1. User input time in milliseconds
-2. Update textview to display entered time
-3. Student clicks start timer
+Written by: Yufeng Luo
 
+-- Option to choose course if student wants to study for certain course, otherwise adds to general study time
+Assume user inputs time in whole minutes because who sets a timer to study for 55 mins and 25 seconds
+1. User input time in milliseconds
+2. Update textview to display entered time in minutes
+3. Student clicks start timer
+4. When timer finishes -- update studyStatistics time // want to implement ability to choose certain course, may need a course class to store information first?
+5. Send request and update data in server
+
+//TODO: Study statistics added to total or certain course
 
  */
 
@@ -94,6 +100,8 @@ public class studySession extends AppCompatActivity {
 
     }
 
+
+    //Timer Functions
     private void startTimer(){
         mEndTime = System.currentTimeMillis() + mTimeLeftMilli;
 
@@ -134,7 +142,7 @@ public class studySession extends AppCompatActivity {
         input.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    //Updates remaining time on timer
+    //Updates timer to reflect the time inputed by user in minutes
     private void updateCountDown(){
 
         int hours = (int) (mTimeLeftMilli / 1000) / 3600;

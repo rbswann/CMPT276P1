@@ -118,7 +118,7 @@ public class RegistrationActivity extends AppCompatActivity {
             inputPassword.requestFocus(); // requestFocus will make the focus go to this box that is empty
         }
 
-        //TODO: OPEN LOGIN PAGE AFTER SUCCESSFUL REGISTRATION
+        //TODO: Check if email is already been used in database
 
         //POST method here to upload user information to server/database
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
