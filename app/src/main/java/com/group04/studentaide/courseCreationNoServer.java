@@ -3,6 +3,8 @@ package com.group04.studentaide;
 /*
 Written By Yufeng Luo
 Tested functionality locally using activity_course_creation.xml, and coursesActivity.xml
+
+Currently no implementation for institution field or Quizzes swithc --> will be done in v2/v3
  */
 
 import android.content.Intent;
@@ -26,14 +28,16 @@ public class courseCreationNoServer extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Set to study session XML
-        mInputCourseName = findViewById(R.id.hint);
-        mInputInstitution = findViewById(R.id.institution);
+        setContentView(R.layout.activity_course_creation); // Set to study session XML
+        mInputCourseName = findViewById(R.id.inputCourseName);
+        mInputInstitution = findViewById(R.id.institutionInput);
         mCreateCourse = findViewById(R.id.createButton);
 
         //Create our LinkedHashMap object from singleton
         CourseSingleton courseList = CourseSingleton.getInstance();
 
+        //After user enters details and clicks create course
+        //They will be taken back to the main course activity page
         mCreateCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,4 +65,5 @@ public class courseCreationNoServer extends AppCompatActivity {
             courseList.setCourseKeys(inputCourseName);
         }
     }
+
 }
