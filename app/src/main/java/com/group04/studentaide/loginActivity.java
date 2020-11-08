@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +23,10 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -77,6 +81,18 @@ public class loginActivity extends AppCompatActivity {
             inputPassword.requestFocus();
         }
 
+
+        //Ensure users fill in respective fields and prevents from sending POST request if empty
+        if (TextUtils.isEmpty(userName)){
+            inputUserName.setError("Please enter your email");
+            inputUserName.requestFocus();
+        }
+
+        if (TextUtils.isEmpty(password)){
+            inputPassword.setError("Please enter your email");
+            inputPassword.requestFocus();
+        }
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -109,4 +125,18 @@ public class loginActivity extends AppCompatActivity {
         };
         StudentAideSingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+    /*
+    //Test case: Checking user data from is valid in database
+    private void checkUser(){
+        JsonObjectRequest userObj = new JsonObjectRequest(Request.Method.GET, LOGIN_URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+            }
+        })
+    }
+
+    */
+
 }
