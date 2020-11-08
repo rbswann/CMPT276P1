@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.group04.studentaide;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+  
+  
+    //Yufeng: I'm not sure if View view needs to be passed into these functions because when the functions are called
+    //and the new Intent is created, startActivity will open the class that is associated with the Intent
+  
     public void loginScreen(View view){
         Intent login = new Intent(this, loginActivity.class);
         startActivity(login);

@@ -115,6 +115,8 @@ public class studySession extends AppCompatActivity {
             @Override
             public void onFinish() {
                 mTimerRunning = false;
+                //Create an object
+                //totalTimeStudying = totalTimeStudying + (startTimeMilli /60000) in minutes
             }
 
         }.start();
