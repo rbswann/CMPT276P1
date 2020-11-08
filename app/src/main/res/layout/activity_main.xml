@@ -8,6 +8,18 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/Stats"
+        android:layout_width="197dp"
+        android:layout_height="37dp"
+        android:onClick="statsScreen"
+        android:text="My Stats"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.906" />
+
+    <Button
         android:id="@+id/coursesOpen"
         android:layout_width="197dp"
         android:layout_height="37dp"
