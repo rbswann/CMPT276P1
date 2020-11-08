@@ -13,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONObject;
 
@@ -57,10 +58,10 @@ public class courseCreation extends AppCompatActivity {
         String courseID = Integer.toString(generateCourseID());
         //Generate courseID when create course clicked
 
-        JsonObjectRequest jsonObject = new JSONObject(Request.Method.GET, COURSE_URL, null,
-                new Response.Listener<JSONObject>() {
+        StringRequest jsonObject = new StringRequest(Request.Method.GET, COURSE_URL,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         Toast.makeText(getApplicationContext(), "Course created", Toast.LENGTH_SHORT).show();
                         Intent openCourse = new Intent(getApplicationContext(), coursesActivity.class);
                         startActivity(openCourse);
