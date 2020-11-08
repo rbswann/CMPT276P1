@@ -23,6 +23,7 @@ import java.util.Random;
 import static com.group04.studentaide.serverURL.COURSE_URL;
 
 /*
+Written by: Yufeng Luo
 Enter course name -- POST to server
 Set end date -- No end date in JSON template
 Course creation generates a course ID also posted to server -- 5 digit(?)
@@ -52,7 +53,7 @@ public class courseCreation extends AppCompatActivity {
 
     private void createCourse(){
 
-        courseName = inputCourseName.getText().toString().trim();
+        String courseName = inputCourseName.getText().toString().trim();
         String courseID = Integer.toString(generateCourseID());
         //Generate courseID when create course clicked
 

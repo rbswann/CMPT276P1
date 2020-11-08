@@ -1,4 +1,6 @@
 /*
+* Written by: Yufeng Luo
+*
 * UNTESTED
 *
 * Registration Class POSTS user entered information using Volley to Server URL in JSONObject format

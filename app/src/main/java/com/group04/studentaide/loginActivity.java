@@ -1,5 +1,5 @@
 /*
-*
+*Written by: Yufeng Luo
 * UNTESTED
 *
 * User login will check information entered serverside and use StringRequest response to determine whether or not credentials are known in database

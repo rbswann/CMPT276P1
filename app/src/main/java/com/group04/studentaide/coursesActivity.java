@@ -1,3 +1,8 @@
+/*
+
+Written by: Yufeng Luo
+
+ */
 package com.group04.studentaide;
 
 import androidx.appcompat.app.AppCompatActivity;
