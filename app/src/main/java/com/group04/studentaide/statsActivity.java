@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,18 @@ import org.json.JSONObject;
 import org.json.JSONException;
 
 import static com.group04.studentaide.serverURL.*;
-import static com.group04.studentaide.SharedPreferencesUtility.*;
+
+/*  File Name: statsActivity.java
+    Team: ProjectTeam04
+    Written By: Jason Leung
+
+    Changes:
+        November 7th - Draft 1 of Version 1
+        November 8th - Draft 2 of Version 1
+
+    Bugs:
+        Haven't been tested yet.
+ */
 
 public class statsActivity extends AppCompatActivity {
 
@@ -30,11 +42,33 @@ public class statsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
-        double totalTime = getTimeTotal();
+        double totalTime = getTimeTotalInternal();
         String displayTotal = Double.toString(totalTime);
 
         totalTimeStudied = (TextView) findViewById(R.id.statslabel);
         totalTimeStudied.setText(displayTotal);
+
+    }
+
+    private double getTimeTotalInternal() {
+
+        CourseSingleton courseList = CourseSingleton.getInstance();
+        HashMap<String, Double> courseHM = courseList.getLinkedHM();
+        double totalTime = 0;
+
+        Iterator<String> iterator = courseHM.keySet().iterator();
+        String courseName = null;
+        double courseTime;
+
+        if (iterator.hasNext()) {
+
+            courseName = iterator.next();
+            courseTime = courseHM.get(courseName);
+            totalTime += courseTime;
+
+        }
+
+        return totalTime;
 
     }
 
@@ -45,7 +79,7 @@ public class statsActivity extends AppCompatActivity {
 
         String getUrl = ROOT_URL + "study_schedule/" + GUID;
         ArrayList<Double> durationList = new ArrayList<>();
-
+        
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, getUrl, null, new Response.Listener<JSONObject>() {
 
             @Override
@@ -84,6 +118,15 @@ public class statsActivity extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
+
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                error.printStackTrace();
 
             }
 
@@ -129,7 +172,7 @@ public class statsActivity extends AppCompatActivity {
 
                             JSONObject jsonObject = jsonArr2.getJSONObject(j);
                             double duration = jsonObject.getDouble("duration");
-                            int courseID = jsonObject.getInt("course_id")
+                            int courseID = jsonObject.getInt("course_id");
 
                             String start = jsonObject.getString("start");
                             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -151,6 +194,15 @@ public class statsActivity extends AppCompatActivity {
                     e.printStackTrace();
 
                 }
+
+            }
+
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                error.printStackTrace();
 
             }
 
