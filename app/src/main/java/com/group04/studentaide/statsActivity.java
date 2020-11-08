@@ -42,7 +42,7 @@ public class statsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
-        double totalTime = getTimeTotalInternal();
+        double totalTime = getTimeTotalNoServer();
         String displayTotal = Double.toString(totalTime);
 
         totalTimeStudied = (TextView) findViewById(R.id.statslabel);
@@ -50,7 +50,7 @@ public class statsActivity extends AppCompatActivity {
 
     }
 
-    private double getTimeTotalInternal() {
+    private double getTimeTotalNoServer() {
 
         CourseSingleton courseList = CourseSingleton.getInstance();
         HashMap<String, Double> courseHM = courseList.getLinkedHM();
