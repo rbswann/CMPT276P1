@@ -1,11 +1,14 @@
 package com.group04.studentaide;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,31 +26,69 @@ import java.util.Locale;
 
 public class studySession extends AppCompatActivity {
 
+
     EditText userInputTime;
     Button setTime;
-    Button startPauseTime;
+    Button startTime;
+    Button pauseTime;
     Button resetTime;
     TextView textCountdownTimer;
 
     private CountDownTimer mCountDownTimer;
     private Boolean mTimerRunning;
+    private Boolean goodToGo = true;
     private long mStartTimeMilli;
     private long mTimeLeftMilli;
     private long mEndTimeMilli;
+    private long mEndTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(); // Set to study session XML
 
-        userInputTime = (EditText) findViewById(R.id.userTime); // Name to be set
-        setTime = (Button) findViewById(R.id.setTimeButton);
-        textCountdownTimer = (TextView) findViewById(R.id.countDown);
+        /*INCLUDE XML FILE AND ATTRIBUTE IDS
+
+        setContentView(R.layout.activity_main);
+
+        userInputTime = (EditText) findViewById(R.id.edit_text_input);
+        pauseTime = (Button) findViewById(R.id.button_pause);
+        setTime = (Button) findViewById(R.id.button_set);
+        textCountdownTimer = (TextView) findViewById(R.id.text_view_countdown);
+        startTime = (Button) findViewById(R.id.button_start_pause);
+
+         */
+        pauseTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseTimer();
+            }
+        });
+
+        startTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTimer();
+            }
+        });
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String input = userInputTime.getText().toString().trim();
 
+                if (input.length() == 0){
+                    goodToGo = false;
+                    Toast.makeText(getApplicationContext(), "Please enter a time.", Toast.LENGTH_SHORT).show();
+                }else{
+                    long millisLeftToTime = Long.parseLong(input) * 60000;
+                    if (millisLeftToTime == 0){
+                        goodToGo = false;
+                        Toast.makeText(getApplicationContext(), "Please enter a time.", Toast.LENGTH_SHORT).show();
+                    }
+
+                    setTimer(millisLeftToTime);
+                    userInputTime.setText("");
+                }
             }
         });
 
@@ -84,8 +125,14 @@ public class studySession extends AppCompatActivity {
     private void setTimer(long milliseconds){
         mStartTimeMilli = milliseconds;
         resetTimer();
+        hideKeyboard();
     }
 
+    private void hideKeyboard(){
+        View view = this.getCurrentFocus();
+        InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        input.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
 
     //Updates remaining time on timer
     private void updateCountDown(){
@@ -103,5 +150,4 @@ public class studySession extends AppCompatActivity {
         }
         textCountdownTimer.setText(timeLeftFormatted);
     }
-
 }
