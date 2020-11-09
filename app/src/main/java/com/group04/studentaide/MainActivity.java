@@ -9,11 +9,27 @@ import android.view.View;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    
+    CourseSingleton courseList;
+    ReadWriteStorage storageHelper;
+    private boolean fileRead = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Load the LinkedHashMap from internal storage and load it into courseList inside CourseSingleton
+        if (!fileRead) {
+         
+            storageHelper = new ReadWriteStorage();
+            courseList = CourseSingleton.getInstance();
+            LinkedHashMap<String, ArrayList<Double>> lhmStorage = storageHelper.LoadHashMapFromStorage("courses.bin");
+
+            courseList.loadHashMapStorage(lhmStorage);
+            
+        }
+        
     }
 
   
