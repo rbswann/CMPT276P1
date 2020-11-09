@@ -80,7 +80,12 @@ public class studySession extends AppCompatActivity {
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Create instance of CourseSingleton in order to store duration into LinkedHashMap.
+                // Implemented here temporarily for the demo so the class would not have to sit through entire duration of timer to
+                // show that the data gets stored properly into HashMap.
+                CourseSingleton courseList = CourseSingleton.getInstance();
                 String input = userInputTime.getText().toString().trim();
+                double duration = Double.valueOf(input);
 
                 if (input.length() == 0){
                     goodToGo = false;
@@ -92,9 +97,12 @@ public class studySession extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please enter a time.", Toast.LENGTH_SHORT).show();
                     }
 
+                    // No ability to select course yet, therefore insert dummy data of 1 in order to retrieve time.
+                    courseList.setStudyTime("Test", duration);
                     setTimer(millisLeftToTime);
                     userInputTime.setText("");
                 }
+
             }
         });
 
