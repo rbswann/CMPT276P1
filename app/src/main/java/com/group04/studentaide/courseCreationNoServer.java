@@ -49,6 +49,7 @@ public class courseCreationNoServer extends AppCompatActivity {
                 createCourse(courseList);
                 Toast.makeText(getApplicationContext(), "Course has been created.", Toast.LENGTH_SHORT).show();
 
+                //Upon course creation clicked, user will be taken back to the Courses homepage
                 Intent intent = new Intent(getApplicationContext(),coursesActivity.class);
                 startActivity(intent);
 
@@ -57,10 +58,12 @@ public class courseCreationNoServer extends AppCompatActivity {
 
     }
 
+    //Upon leaving the course creation activity, the updated CourseList will be saved in internal storage
+    //If the application is killed, upon reopening the saved Courses will be retrieved
     @Override
     protected void onStop() {
         super.onStop();
-        readWriteStorage storageHelper = new readWriteStorage();
+        ReadWriteStorage storageHelper = new ReadWriteStorage();
         LinkedHashMap<String, ArrayList<Double>> courseListLinkedHM= courseList.getLinkedHM();
 
         try {

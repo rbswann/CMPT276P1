@@ -1,5 +1,17 @@
 package com.group04.studentaide;
 
+/*
+Written By: Yufeng Luo
+
+LinkedHashMaps holding data of Course Names and study times
+Using storage on the device, we can save the information that user has provided and retreive
+again upon reopening of app.
+
+This ensures that data is not lost due to killing of application.
+
+ */
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,7 +22,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-public class readWriteStorage {
+public class ReadWriteStorage {
 
     public void SaveHashMapToStorage(String filename, LinkedHashMap<String, ArrayList<Double>> linkedHashMap) throws FileNotFoundException{
         try{
