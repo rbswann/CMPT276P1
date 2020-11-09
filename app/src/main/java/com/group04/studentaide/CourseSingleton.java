@@ -3,7 +3,6 @@ package com.group04.studentaide;
 /*
 Written By: Yufeng Luo
 Edited By: Jason Leung
-Temporary fix to no database?
 Currently don't know how to split data for when a user wants to display study time from a certain period of time --> will need more research and adjust implementation
 This class is used to create a singleton object of our LHM and ArrayList,
 that way data can be shared throughout activities as the Instance is saved
@@ -26,7 +25,8 @@ public class CourseSingleton{
 
     public CourseSingleton(){
         courseList = new LinkedHashMap<String,ArrayList<Double>>();
-        //Dont know if can do this with arraylist and keys
+        //courseKeys will be the ArrayList used to populate spinner items
+        //Add coursename to coursekeys whenever createCourse() is called using setCourseKey(String courseName);
         courseKeys = new ArrayList<String>();
     }
 
