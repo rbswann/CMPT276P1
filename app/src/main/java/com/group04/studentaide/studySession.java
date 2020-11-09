@@ -108,6 +108,19 @@ public class studySession extends AppCompatActivity {
 
     }
 
+    // Load the LinkedHashMap into internal storage after leaving studySession activity (may have added values)
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ReadWriteStorage storageHelper = new ReadWriteStorage();
+        LinkedHashMap<String, ArrayList<Double>> courseListLinkedHM= courseList.getLinkedHM();
+
+        try {
+            storageHelper.SaveHashMapToStorage("courses.bin", courseListLinkedHM);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Timer Functions
     private void startTimer(){
