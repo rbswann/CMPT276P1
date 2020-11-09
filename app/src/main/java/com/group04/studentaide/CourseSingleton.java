@@ -60,10 +60,9 @@ public class CourseSingleton{
     }
     
     // Method to load the LinkedHashMap from internal storage and into courseList inside CourseSingleton
-    public LinkedHashMap<String, ArrayList<Double>> loadHashMapStorage(LinkedHashMap<String, ArrayList<Double>> lhmStorage) {
+    public void loadHashMapStorage(LinkedHashMap<String, ArrayList<Double>> lhmStorage) {
 
         courseList.putAll(lhmStorage);
-        return courseList;
 
     }
 
