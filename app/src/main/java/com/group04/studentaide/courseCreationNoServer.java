@@ -18,12 +18,17 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+
 public class courseCreationNoServer extends AppCompatActivity {
 
 
     EditText mInputCourseName;
     EditText mInputInstitution;
     Button mCreateCourse;
+    CourseSingleton courseList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class courseCreationNoServer extends AppCompatActivity {
         mCreateCourse = findViewById(R.id.createButton);
 
         //Create our LinkedHashMap object from singleton
-        CourseSingleton courseList = CourseSingleton.getInstance();
+        courseList = CourseSingleton.getInstance();
 
         //After user enters details and clicks create course
         //They will be taken back to the main course activity page
@@ -50,6 +55,19 @@ public class courseCreationNoServer extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        readWriteStorage storageHelper = new readWriteStorage();
+        LinkedHashMap<String, ArrayList<Double>> courseListLinkedHM= courseList.getLinkedHM();
+
+        try {
+            storageHelper.SaveHashMapToStorage("courses.bin", courseListLinkedHM);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createCourse(CourseSingleton courseList){
