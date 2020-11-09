@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void statsScreen(View view){
-        Intent stats = new Intent(this, statsActivity.class);
+        Intent stats = new Intent(this, studyStatistics.class);
         startActivity(stats);
     }
 
