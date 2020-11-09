@@ -58,6 +58,14 @@ public class CourseSingleton{
         courseList.put(courseName, temp);
 
     }
+    
+    // Method to load the LinkedHashMap from internal storage and into courseList inside CourseSingleton
+    public LinkedHashMap<String, ArrayList<Double>> loadHashMapStorage(LinkedHashMap<String, ArrayList<Double>> lhmStorage) {
+
+        courseList.putAll(lhmStorage);
+        return courseList;
+
+    }
 
     //Use this before adding new time studied to ensure that total time is updated correctly
     public ArrayList<Double> getStudyTime(String courseName) {
