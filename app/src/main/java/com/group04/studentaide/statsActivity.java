@@ -50,20 +50,20 @@ public class statsActivity extends AppCompatActivity {
 
     }
 
+    // Tested with Alex, it works
     private double getTimeTotalNoServer() {
 
         CourseSingleton courseList = CourseSingleton.getInstance();
-        HashMap<String, Double> courseHM = courseList.getLinkedHM();
+        LinkedHashMap<String, Double> courseHM = courseList.getLinkedHM();
         double totalTime = 0;
 
-        Iterator<String> iterator = courseHM.keySet().iterator();
-        String courseName = null;
+        ArrayList<String> keys = new ArrayList<String>();
+        keys = courseList.getKeys(courseHM, keys);
         double courseTime;
 
-        if (iterator.hasNext()) {
+        for (int i = 0; i < keys.size(); i++) {
 
-            courseName = iterator.next();
-            courseTime = courseHM.get(courseName);
+            courseTime = courseList.getStudyTime(keys.get(i));
             totalTime += courseTime;
 
         }
