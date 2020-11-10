@@ -39,6 +39,7 @@ public class studySession extends AppCompatActivity {
     Button pauseTime;
     Button resetTime;
     TextView textCountdownTimer;
+    CourseSingleton courseList;
 
     private CountDownTimer mCountDownTimer;
     private Boolean mTimerRunning;
