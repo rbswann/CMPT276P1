@@ -75,10 +75,20 @@ public class CourseSingleton{
 
     //After a timer has run down and time has been calculated can add onto total
     public void setStudyTime(String courseName, double timeStudied){
-
-        ArrayList<Double> temp = courseList.get(courseName);
-        temp.add(timeStudied);
-        courseList.put(courseName, temp);
+        
+        if (courseList.containsKey(courseName)) {
+            
+            ArrayList<Double> temp = courseList.get(courseName);
+            temp.add(timeStudied);
+            courseList.put(courseName, temp);
+            
+        } else {
+            
+            ArrayList<Double> temp = new ArrayList<Double>();
+            temp.add(timeStudied);
+            courseList.put(courseName, temp);
+            
+        }
 
     }
 
